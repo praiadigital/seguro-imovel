@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seguro Imóvel — Proteção para seu imóvel de praia | Praia Digital</title>
+<meta name="description" content="Calcule o custo do seguro residencial para imóveis no litoral: maresia, vendaval, temporada e coberturas essenciais.">
+<link rel="canonical" href="https://praia.digital/seguro-imovel/">
+<style>:root{--azul:#0a2540;--mar:#0e7490;--areia:#f8f5ef}*{margin:0;box-sizing:border-box;font-family:system-ui,sans-serif}body{background:var(--areia);color:#1e293b}header{background:linear-gradient(135deg,var(--azul),var(--mar));color:#fff;padding:2.5rem 1.5rem;text-align:center}.badge{display:inline-block;background:rgba(255,255,255,.15);padding:.25rem .8rem;border-radius:999px;font-size:.8rem;margin-bottom:.8rem}main{max-width:720px;margin:2rem auto;padding:0 1.25rem}.card{background:#fff;border-radius:1rem;padding:1.75rem;box-shadow:0 4px 24px rgba(10,37,64,.08);margin-bottom:1.5rem}label{display:block;font-weight:600;margin:1rem 0 .35rem}input,select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:.5rem;font-size:1rem}.chk{display:flex;gap:.6rem;align-items:center;padding:.4rem 0;font-weight:400}.chk input{width:auto;width:18px;height:18px;accent-color:var(--mar)}button{width:100%;margin-top:1.4rem;background:var(--mar);color:#fff;border:0;padding:.9rem;font-size:1.05rem;font-weight:700;border-radius:.6rem;cursor:pointer}#out{display:none;text-align:center}.preco{font-size:2.4rem;font-weight:800;color:var(--azul)}.rede{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem}.rede a{background:#fff;border:1px solid #e2e8f0;border-radius:.6rem;padding:.8rem;text-decoration:none;color:var(--azul);font-weight:600;font-size:.9rem}footer{text-align:center;padding:2rem;color:#64748b;font-size:.85rem}footer a{color:var(--mar)}</style>
+</head>
+<body>
+<header><span class="badge">🛰️ App satélite de <a href="https://praia.digital" style="color:#fff">praia.digital</a></span><h1>🛡️ Seguro Imóvel</h1><p>Quanto custa proteger seu imóvel de praia?</p></header>
+<main>
+<div class="card">
+<label>Valor do imóvel (R$)</label><input id="valor" type="number" value="600000">
+<label>Distância do mar</label><select id="mar"><option value="1.35">Frente ao mar</option><option value="1.15">Até 300 m</option><option value="1">Até 1 km</option><option value="0.9">Mais de 1 km</option></select>
+<label>Uso</label><select id="uso"><option value="1">Moradia permanente</option><option value="1.25">Segunda residência</option><option value="1.6">Locação de temporada</option></select>
+<label>Coberturas adicionais</label>
+<label class="chk"><input type="checkbox" class="cov" value="80" checked> Vendaval e granizo (essencial no litoral)</label>
+<label class="chk"><input type="checkbox" class="cov" value="60"> Danos elétricos e raios</label>
+<label class="chk"><input type="checkbox" class="cov" value="90" checked> Roubo e furto (temporada vazia)</label>
+<label class="chk"><input type="checkbox" class="cov" value="120"> Responsabilidade civil (hóspedes)</label>
+<button onclick="calc()">Estimar seguro anual</button>
+</div>
+<div class="card" id="out"><p style="color:#64748b">Estimativa anual</p><div class="preco" id="preco"></div><p id="mensal" style="color:#475569"></p>
+<p style="margin-top:1rem;font-size:.9rem">💡 No litoral, seguro com cobertura de vendaval + maresia evita prejuízos médios de R$ 15 mil a cada 5 anos. Proteja também seu investimento com o <a href="https://praia.digital/reforma-roi">Reforma ROI</a> e o <a href="https://praia.digital/checklist-anfitriao">Checklist do Anfitrião</a>.</p></div>
+<h2 style="margin:1.5rem 0 .8rem">🌐 Rede Praia Digital</h2>
+<div class="rede">
+<a href="https://praia.digital">🏠 Portal Praia Digital</a>
+<a href="https://praia.digital/calculadora-custos">🧾 Calculadora de Custos</a>
+<a href="https://praia.digital/area-anfitriao">🔑 Área do Anfitrião</a>
+<a href="https://praia.digital/checklists-litoral">✅ Checklists</a>
+<a href="https://praia.digital/apps">🛰️ Todos os apps</a>
+</div>
+</main>
+<footer>Feito com 🌊 pela rede <a href="https://praia.digital">Praia Digital</a> · <a href="https://github.com/praiadigital/seguro-imovel">código aberto no GitHub</a></footer>
+<script>
+const BRL=v=>'R$ '+Math.round(v).toLocaleString('pt-BR');
+function calc(){
+const V=+valor.value||0;let anual=V*0.0018*(+mar.value)*(+uso.value);
+document.querySelectorAll('.cov:checked').forEach(c=>anual+=+c.value);
+out.style.display='block';preco.textContent=BRL(anual)+'/ano';
+mensal.textContent=`≈ ${BRL(anual/12)}/mês — menos que 2 diárias de temporada por ano de proteção total.`;
+}
+</script>
+</body></html>
